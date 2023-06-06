@@ -1,0 +1,8 @@
+pomocnicze/
+bin/
+obj/
+Incomes.*
+*.xml
+DodanieUsers.*
+SprawdzeniePoprawnosciWpisanejDaty.*
+WyciaganieDanychZPliku.*
