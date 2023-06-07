@@ -6,6 +6,14 @@ User UserManager :: getNewUserData()
 
     user.setId(getNewUserId());
 
+    cout << "Podaj imie: ";
+    user.setName(AuxiliaryMethods:: wczytajLinie());
+    user.setName(AuxiliaryMethods:: zamienPierwszaLitereNaDuzaAPozostaleNaMale(user.getName()));
+
+    cout << "Podaj nazwisko: ";
+    user.setSurname(AuxiliaryMethods:: wczytajLinie());
+    user.setSurname(AuxiliaryMethods:: zamienPierwszaLitereNaDuzaAPozostaleNaMale(user.getSurname()));
+
     do
     {
         cout << "Podaj login: ";
@@ -15,14 +23,6 @@ User UserManager :: getNewUserData()
 
     cout << "Podaj haslo: ";
     user.setPassword(AuxiliaryMethods:: wczytajLinie());
-
-    cout << "Podaj imie: ";
-    user.setName(AuxiliaryMethods:: wczytajLinie());
-    user.setName(AuxiliaryMethods:: zamienPierwszaLitereNaDuzaAPozostaleNaMale(user.getName()));
-
-    cout << "Podaj nazwisko: ";
-    user.setSurname(AuxiliaryMethods:: wczytajLinie());
-    user.setSurname(AuxiliaryMethods:: zamienPierwszaLitereNaDuzaAPozostaleNaMale(user.getSurname()));
 
     return user;
 }
@@ -55,15 +55,14 @@ char UserManager :: selectOptionFromUserMenu()
     system("cls");
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
     cout << "---------------------------" << endl;
-    cout << "1. Dodaj adresata" << endl;
-    cout << "2. Wyszukaj po imieniu" << endl;
-    cout << "3. Wyszukaj po nazwisku" << endl;
-    cout << "4. Wyswietl adresatow" << endl;
-    cout << "5. Usun adresata" << endl;
-    cout << "6. Edytuj adresata" << endl;
+    cout << "1. Dodaj przychod" << endl;
+    cout << "2. Dodaj wydatek" << endl;
+    cout << "3. Bilans biezacego miesiaca" << endl;
+    cout << "4. Bilans z poprzedniego miesiaca" << endl;
+    cout << "5. Bilans z wybranego okresu" << endl;
     cout << "---------------------------" << endl;
-    cout << "7. Zmien haslo" << endl;
-    cout << "8. Wyloguj sie" << endl;
+    cout << "6. Zmien haslo" << endl;
+    cout << "7. Wyloguj sie" << endl;
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
     choice = AuxiliaryMethods :: wczytajZnak();
@@ -76,7 +75,7 @@ void UserManager :: registerUser()
     User user = getNewUserData();
 
     users.push_back(user);
-   // userFile.dopiszUzytkownikaDoPliku(user);
+    userFile.addUserToFile(user);
 
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     system("pause");

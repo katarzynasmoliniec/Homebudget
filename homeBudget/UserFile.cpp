@@ -1,29 +1,62 @@
 #include "UserFile.h"
 
-/*void UserFile :: dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik)
+vector <User> UserFile :: loadUsersFromFile()
 {
-    fstream plikTekstowy;
-    string liniaZDanymiUzytkownika = "";
-    plikTekstowy.open(pobierzNazwePliku().c_str(), ios::app);
+    User user;
+    vector <User> users;
 
-    if (plikTekstowy.good())
+    CMarkup xml;
+
+    xml.Load( FILE_NAME);
+    xml.FindElem();
+    xml.IntoElem();
+    while (xml.FindElem("User"))
     {
-        liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(uzytkownik);
+        xml.IntoElem();
+        xml.FindElem("UserId");
+        user.setId(atoi( MCD_2PCSZ(xml.GetData())));
+        xml.FindElem("Name");
+        user.setName(xml.GetData());
+        xml.FindElem("Surname");
+        user.setSurname(xml.GetData());
+        xml.FindElem("Login");
+        user.setLogin(xml.GetData());
+        xml.FindElem("Password");
+        user.setPassword(xml.GetData());
 
-        if (czyPlikJestPusty())
-        {
-            plikTekstowy << liniaZDanymiUzytkownika;
-        }
-        else
-        {
-            plikTekstowy << endl << liniaZDanymiUzytkownika ;
-        }
+        users.push_back(user);
+        xml.OutOfElem();
     }
-    else
-        cout << "Nie udalo sie otworzyc pliku " << pobierzNazwePliku() << " i zapisac w nim danych." << endl;
-    plikTekstowy.close();
+    return users;
 }
 
+void UserFile :: addUserToFile(User user)
+{
+    CMarkup xml;
+
+    bool fileExists = xml.Load( FILE_NAME );
+
+    if (!fileExists)
+    {
+        xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        xml.AddElem("Users");
+    }
+    xml.FindElem();
+    xml.IntoElem();
+    xml.AddElem("User");
+    xml.IntoElem();
+    xml.AddElem("UserId", user.getId());
+    xml.AddElem("Name", user.getName());
+    xml.AddElem("Surname", user.getSurname());
+    xml.AddElem("Login", user.getLogin());
+    xml.AddElem("Password", user.getPassword());
+
+    xml.Save(FILE_NAME);
+}
+
+
+
+/*
 string UserFile :: zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik)
 {
     string liniaZDanymiUzytkownika = "";
@@ -33,61 +66,11 @@ string UserFile :: zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskam
     liniaZDanymiUzytkownika += uzytkownik.pobierzHaslo() + '|';
 
     return liniaZDanymiUzytkownika;
-}
+}*/
 
-vector <Uzytkownik> UserFile :: wczytajUzytkownikowZPliku()
-{
-    Uzytkownik uzytkownik;
-    vector <Uzytkownik> uzytkownicy;
-    fstream plikTekstowy;
-    string daneJednegoUzytkownikaOddzielonePionowymiKreskami = "";
 
-    plikTekstowy.open(pobierzNazwePliku().c_str(), ios::in);
+/*
 
-    if (plikTekstowy.good())
-    {
-        while (getline(plikTekstowy, daneJednegoUzytkownikaOddzielonePionowymiKreskami))
-        {
-            uzytkownik = pobierzDaneUzytkownika(daneJednegoUzytkownikaOddzielonePionowymiKreskami);
-            uzytkownicy.push_back(uzytkownik);
-        }
-        plikTekstowy.close();
-    }
-    return uzytkownicy;
-}
-
-Uzytkownik UserFile :: pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami)
-{
-    Uzytkownik uzytkownik;
-    string pojedynczaDanaUzytkownika = "";
-    int numerPojedynczejDanejUzytkownika = 1;
-
-    for (size_t pozycjaZnaku = 0; pozycjaZnaku < daneJednegoUzytkownikaOddzielonePionowymiKreskami.length(); pozycjaZnaku++)
-    {
-        if (daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku] != '|')
-        {
-            pojedynczaDanaUzytkownika += daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku];
-        }
-        else
-        {
-            switch(numerPojedynczejDanejUzytkownika)
-            {
-            case 1:
-                uzytkownik.ustawId(atoi(pojedynczaDanaUzytkownika.c_str()));
-                break;
-            case 2:
-                uzytkownik.ustawLogin(pojedynczaDanaUzytkownika);
-                break;
-            case 3:
-                uzytkownik.ustawHaslo(pojedynczaDanaUzytkownika);
-                break;
-            }
-            pojedynczaDanaUzytkownika = "";
-            numerPojedynczejDanejUzytkownika++;
-        }
-    }
-    return uzytkownik;
-}
 
 void UserFile :: zapiszWszystkichUzytkownikowDoPliku(vector <Uzytkownik> &uzytkownicy)
 {

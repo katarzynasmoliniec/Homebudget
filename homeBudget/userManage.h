@@ -1,5 +1,5 @@
-#ifndef UserManage_H
-#define UserManage_H
+#ifndef USERMANAGE_H
+#define USERMANAGE_H
 
 #include <iostream>
 #include <vector>
@@ -27,7 +27,7 @@ public:
     UserManager(string nameFileUser) : userFile(nameFileUser)
     {
         loggedInUserId = 0;
-        //users = userFile.wczytajUzytkownikowZPliku();
+        users = userFile.loadUsersFromFile();
     };
 
     char selectOptionFromUserMenu();

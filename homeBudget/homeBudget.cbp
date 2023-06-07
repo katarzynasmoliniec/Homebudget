@@ -32,8 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="User.cpp" />
-		<Unit filename="User.h" />
+		<Unit filename="Markup.cpp" />
+		<Unit filename="Markup.h" />
 		<Unit filename="UserFile.cpp" />
 		<Unit filename="UserFile.h" />
 		<Unit filename="UserManage.cpp" />
@@ -43,6 +43,8 @@
 		<Unit filename="homeBudget.cpp" />
 		<Unit filename="homeBudget.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="user.cpp" />
+		<Unit filename="user.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
