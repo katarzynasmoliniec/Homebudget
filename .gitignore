@@ -1,9 +1,14 @@
 pomocnicze/
 bin/
 obj/
+plan/
 Incomes.*
 *.xml
 DodanieUsers.*
 SprawdzeniePoprawnosciWpisanejDaty.*
 WyciaganieDanychZPliku.*
 Markup.*
+AddIncomesAndSort/
+AddUsers/
+CheckDataWriteFromUser/
+GetterDataFromFile/
