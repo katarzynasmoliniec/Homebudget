@@ -1,6 +1,6 @@
-#include "MetodyPomocnicze.h"
+#include "auxiliaryMethods.h"
 
-string MetodyPomocnicze :: konwerjsaIntNaString(int liczba)
+string AuxiliaryMethods :: konwerjsaIntNaString(int liczba)
 {
     ostringstream ss;
     ss << liczba;
@@ -8,7 +8,7 @@ string MetodyPomocnicze :: konwerjsaIntNaString(int liczba)
     return str;
 }
 
-int MetodyPomocnicze :: konwersjaStringNaInt(string liczba)
+int AuxiliaryMethods :: konwersjaStringNaInt(string liczba)
 {
     int liczbaInt;
     istringstream iss(liczba);
@@ -17,7 +17,7 @@ int MetodyPomocnicze :: konwersjaStringNaInt(string liczba)
     return liczbaInt;
 }
 
-string MetodyPomocnicze :: wczytajLinie()
+string AuxiliaryMethods :: wczytajLinie()
 {
     string wejscie = "";
     cin.sync();
@@ -25,7 +25,7 @@ string MetodyPomocnicze :: wczytajLinie()
     return wejscie;
 }
 
-string MetodyPomocnicze :: zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst)
+string AuxiliaryMethods :: zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst)
 {
     if (!tekst.empty())
     {
@@ -35,7 +35,7 @@ string MetodyPomocnicze :: zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tek
     return tekst;
 }
 
-string MetodyPomocnicze :: pobierzLiczbe(string tekst, int pozycjaZnaku)
+string AuxiliaryMethods :: pobierzLiczbe(string tekst, int pozycjaZnaku)
 {
     string liczba = "";
     while(isdigit(tekst[pozycjaZnaku]) == true)
@@ -46,7 +46,7 @@ string MetodyPomocnicze :: pobierzLiczbe(string tekst, int pozycjaZnaku)
     return liczba;
 }
 
-char MetodyPomocnicze :: wczytajZnak()
+char AuxiliaryMethods :: wczytajZnak()
 {
     string wejscie = "";
     char znak  = {0};
@@ -65,7 +65,7 @@ char MetodyPomocnicze :: wczytajZnak()
     return znak;
 }
 
-int MetodyPomocnicze :: wczytajLiczbeCalkowita()
+int AuxiliaryMethods :: wczytajLiczbeCalkowita()
 {
     string wejscie = "";
     int liczba = 0;

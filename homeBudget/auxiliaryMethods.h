@@ -1,5 +1,5 @@
-#ifndef METODYPOMOCNICZE_H
-#define METODYPOMOCNICZE_H
+#ifndef AUXILIARYMETHODS_H
+#define AUXILIARYMETHODS_H
 
 #include <iostream>
 #include <sstream>
@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class MetodyPomocnicze
+class AuxiliaryMethods
 {
 public:
     static string konwerjsaIntNaString(int liczba);

@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="homeBudget" />
+		<Option title="HomeBudget" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -32,6 +32,16 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="User.cpp" />
+		<Unit filename="User.h" />
+		<Unit filename="UserFile.cpp" />
+		<Unit filename="UserFile.h" />
+		<Unit filename="UserManage.cpp" />
+		<Unit filename="UserManage.h" />
+		<Unit filename="auxiliaryMethods.cpp" />
+		<Unit filename="auxiliaryMethods.h" />
+		<Unit filename="homeBudget.cpp" />
+		<Unit filename="homeBudget.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

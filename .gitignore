@@ -2,11 +2,8 @@ pomocnicze/
 bin/
 obj/
 plan/
-Incomes.*
+HomeBudget.*
 *.xml
-DodanieUsers.*
-SprawdzeniePoprawnosciWpisanejDaty.*
-WyciaganieDanychZPliku.*
 Markup.*
 AddIncomesAndSort/
 AddUsers/
