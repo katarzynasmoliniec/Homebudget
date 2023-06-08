@@ -5,14 +5,14 @@
 
 #include "auxiliaryMethods.h"
 #include "UserManage.h"
-//#include "AdresatMenedzer.h"
+#include "IncomeExpense.h"
 
 using namespace std;
 
 class HomeBudget
 {
     UserManager userManager;
-    //IncomeExpense *incomeExpense;
+    IncomeExpense *incomeExpense;
     const string NAME_FILE_INCOME;
     const string NAME_FILE_EXPENSE;
 
@@ -20,14 +20,14 @@ public:
     HomeBudget(string nameFileUser, string nameFileIncome, string nameFileExpense)
     : userManager(nameFileUser), NAME_FILE_INCOME(nameFileIncome), NAME_FILE_EXPENSE(nameFileExpense)
     {
-      //  incomeExpense = NULL;
+        incomeExpense = NULL;
     };
 
-  /*  ~HomeBudget()
+    ~HomeBudget()
     {
         delete incomeExpense;
         incomeExpense = NULL;
-    }*/
+    }
 
     int getLoggedInUserId();
     void registerUser();

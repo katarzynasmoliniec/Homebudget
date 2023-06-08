@@ -4,8 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
-#include <fstream>
-#include <sstream>
 
 #include "user.h"
 #include "UserFile.h"
@@ -29,7 +27,6 @@ public:
         loggedInUserId = 0;
         users = userFile.loadUsersFromFile();
     };
-
     char selectOptionFromUserMenu();
     void registerUser();
     int loginUser();

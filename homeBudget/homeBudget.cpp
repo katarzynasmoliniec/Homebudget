@@ -13,7 +13,7 @@ void HomeBudget :: loginUser()
     userManager.loginUser();
     if (userManager.isUserLoggedIn())
     {
-     //   incomeExpense = new IncomeExpense(NAME_FILE_INCOME, NAME_FILE_EXPENSE, userManager.getLoggedInUserId());
+        incomeExpense = new IncomeExpense(NAME_FILE_INCOME, NAME_FILE_EXPENSE, userManager.getLoggedInUserId());
     }
 
 }
@@ -24,8 +24,8 @@ void HomeBudget :: changePasswordUser()
 void HomeBudget :: logoutUser()
 {
     userManager.logoutUser();
-    //delete incomeExpense;
-    //incomeExpense = NULL;
+    delete incomeExpense;
+    incomeExpense = NULL;
 }
 char HomeBudget :: selectOptionFromMainMenu()
 {
