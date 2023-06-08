@@ -48,3 +48,41 @@ char HomeBudget :: selectOptionFromUserMenu()
 {
     return userManager.selectOptionFromUserMenu();
 }
+
+void HomeBudget :: addIncome()
+{
+    if(userManager.isUserLoggedIn())
+    {
+         incomeExpense->addIncome();
+    }
+    else
+    {
+        cout << "Aby dodac przychod, nalezy najpierw sie zalogowac." << endl;
+        system("pause");
+    }
+}
+
+void HomeBudget :: addExpense()
+{
+    if(userManager.isUserLoggedIn())
+    {
+         incomeExpense->addExpense();
+    }
+    else
+    {
+        cout << "Aby dodac przychod, nalezy najpierw sie zalogowac." << endl;
+        system("pause");
+    }
+}
+void HomeBudget :: balanse()
+{
+    if(userManager.isUserLoggedIn())
+    {
+         incomeExpense->balanse();
+    }
+    else
+    {
+        cout << "Aby dodac przychod, nalezy najpierw sie zalogowac." << endl;
+        system("pause");
+    }
+}

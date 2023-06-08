@@ -19,5 +19,6 @@ public:
 
     void addUserToFile(User user);
     vector <User> loadUsersFromFile();
+    void writeAllUsersToFile(User user);
 };
 #endif

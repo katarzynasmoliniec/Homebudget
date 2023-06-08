@@ -26,6 +26,10 @@ public:
        // incomes = incomeFile.wczytajAdresatowZalogowanegoUzytkownikaZPliku(LOGGED_IN_USER_ID);
        // expenses = expenseFile.wczytajAdresatowZalogowanegoUzytkownikaZPliku(LOGGED_IN_USER_ID);
     };
+    char selectOptionFromBudgetMenu();
+    void addIncome();
+    void addExpense();
+    void balanse();
 
 };
 #endif

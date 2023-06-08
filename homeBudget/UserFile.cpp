@@ -53,3 +53,27 @@ void UserFile :: addUserToFile(User user)
 
     xml.Save(FILE_NAME);
 }
+
+void UserFile :: writeAllUsersToFile( User user)
+{
+    CMarkup xml;
+
+    xml.Load( FILE_NAME);
+    xml.FindElem();
+    xml.IntoElem();
+
+    while (xml.FindElem("User"))
+    {
+        xml.IntoElem();
+        xml.FindElem("UserId");
+        if (user.getId() == atoi( MCD_2PCSZ(xml.GetData())))
+        {
+            xml.FindElem("Password");
+            xml.RemoveElem();
+            xml.AddElem("Password", user.getPassword());
+            xml.OutOfElem();
+        }
+        xml.OutOfElem();
+    }
+    xml.Save(FILE_NAME);
+}

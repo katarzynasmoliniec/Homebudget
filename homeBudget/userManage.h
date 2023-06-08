@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
+#include <iterator>
 
 #include "user.h"
 #include "UserFile.h"

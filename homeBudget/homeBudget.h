@@ -35,6 +35,10 @@ public:
     void changePasswordUser();
     void logoutUser();
 
+    void addIncome();
+    void addExpense();
+    void balanse();
+
     char selectOptionFromMainMenu();
     char selectOptionFromUserMenu();
 

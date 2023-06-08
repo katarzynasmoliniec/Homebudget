@@ -124,11 +124,12 @@ void UserManager :: changePasswordUser()
         if (users[i].getId() == loggedInUserId)
         {
             users[i].setPassword(newPassword);
+            userFile.writeAllUsersToFile(users[i]);
             cout << "Haslo zostalo zmienione." << endl << endl;
             system("pause");
         }
     }
-  //  userFile.zapiszWszystkichUzytkownikowDoPliku(users);
+
 }
 
 void UserManager :: logoutUser()
@@ -150,19 +151,6 @@ int UserManager :: getLoggedInUserId()
 {
     return loggedInUserId;
 }
-
-/*
-void UserManager :: wypiszWszystkichUzytkownikow()
-{
-    for (size_t i = 0; i < users.size(); i++)
-    {
-        cout << users[i].pobierzId() << endl;
-        cout << users[i].pobierzLogin() << endl;
-        cout << users[i].pobierzHaslo() << endl;
-    }
-}
-*/
-
 
 
 

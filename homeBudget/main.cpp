@@ -30,6 +30,29 @@ int main()
                 break;
             }
         }
+        else
+        {
+            choice = homeBudget.selectOptionFromUserMenu();
+
+            switch (choice)
+            {
+            case '1':
+                homeBudget.addIncome();
+                break;
+            case '2':
+                homeBudget.addExpense();
+                break;
+            case '3' || '4' || '5':
+                homeBudget.balanse();
+                break;
+            case '6':
+                homeBudget.changePasswordUser();
+                break;
+            case '7':
+                homeBudget.logoutUser();
+                 break;
+            }
+        }
     }
     return 0;
 }
