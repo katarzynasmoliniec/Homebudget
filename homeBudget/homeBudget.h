@@ -37,7 +37,7 @@ public:
 
     void addIncome();
     void addExpense();
-    void balanse();
+    void balance();
 
     char selectOptionFromMainMenu();
     char selectOptionFromUserMenu();

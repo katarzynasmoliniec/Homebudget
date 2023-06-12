@@ -1,70 +1,39 @@
 #include "auxiliaryMethods.h"
 
-string AuxiliaryMethods :: konwerjsaIntNaString(int liczba)
+string AuxiliaryMethods :: changeFirstLetterForUpperCaseAndOthersForLowerCase(string str)
 {
-    ostringstream ss;
-    ss << liczba;
-    string str = ss.str();
+    if (!str.empty())
+    {
+        transform(str.begin(), str.end(), str.begin(), ::tolower);
+        str[0] = toupper(str[0]);
+    }
     return str;
 }
-
-int AuxiliaryMethods :: konwersjaStringNaInt(string liczba)
+string AuxiliaryMethods :: loadLine()
 {
-    int liczbaInt;
-    istringstream iss(liczba);
-    iss >> liczbaInt;
-
-    return liczbaInt;
-}
-
-string AuxiliaryMethods :: wczytajLinie()
-{
-    string wejscie = "";
+    string input = "";
     cin.sync();
-    getline(cin, wejscie);
-    return wejscie;
+    getline(cin, input);
+    return input;
 }
-
-string AuxiliaryMethods :: zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst)
+char AuxiliaryMethods :: loadChar()
 {
-    if (!tekst.empty())
-    {
-        transform(tekst.begin(), tekst.end(), tekst.begin(), ::tolower);
-        tekst[0] = toupper(tekst[0]);
-    }
-    return tekst;
-}
-
-string AuxiliaryMethods :: pobierzLiczbe(string tekst, int pozycjaZnaku)
-{
-    string liczba = "";
-    while(isdigit(tekst[pozycjaZnaku]) == true)
-    {
-        liczba += tekst[pozycjaZnaku];
-        pozycjaZnaku ++;
-    }
-    return liczba;
-}
-
-char AuxiliaryMethods :: wczytajZnak()
-{
-    string wejscie = "";
-    char znak  = {0};
+    string input = "";
+    char charInfo  = {0};
 
     while(true)
     {
-        string wejscie = wczytajLinie();
+        string input = loadLine();
 
-        if (wejscie.length() == 1)
+        if (input.length() == 1)
         {
-            znak = wejscie[0];
+            charInfo = input[0];
             break;
         }
         cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
     }
-    return znak;
+    return charInfo;
 }
-
 double AuxiliaryMethods :: loadNumber()
 {
     string input = "";
@@ -97,6 +66,5 @@ double AuxiliaryMethods :: stringToDouble(string number)
     double doubleNum;
     istringstream iss(number);
     iss >> doubleNum;
-
     return doubleNum;
 }

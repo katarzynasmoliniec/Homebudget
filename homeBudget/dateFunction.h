@@ -2,16 +2,9 @@
 #define DATEFUNCTION_H
 
 #include <iostream>
-#include <ctime>
-#include <cstdio>
-#include <clocale>
 #include <windows.h>
 #include <winbase.h>
-
-#include <iomanip>
-#include <sstream>
-#include <vector>
-
+#include <time.h>
 
 using namespace std;
 
@@ -23,7 +16,6 @@ class DateFunction
 public:
     static int getTodayDate();
     static int convertDateToIntandCheckDate(string date);
-
 };
 #endif
 

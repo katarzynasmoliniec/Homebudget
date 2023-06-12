@@ -25,6 +25,7 @@ vector <Expense> ExpenseFile :: loadExpensesOfLoggedInUserFromFile(int idLoggedU
             expense.setCategory(xml.GetData());
             expenses.push_back(expense);
         }
+        xml.OutOfElem();
     }
     xml.ResetPos();
     return expenses;

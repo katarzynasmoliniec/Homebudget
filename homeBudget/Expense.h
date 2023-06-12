@@ -7,7 +7,5 @@
 using namespace std;
 
 class Expense :public Income
-{
-
-};
+{};
 #endif

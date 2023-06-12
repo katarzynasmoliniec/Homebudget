@@ -34,7 +34,6 @@
 		</Compiler>
 		<Unit filename="DateFunction.cpp" />
 		<Unit filename="DateFunction.h" />
-		<Unit filename="Expense.cpp" />
 		<Unit filename="Expense.h" />
 		<Unit filename="ExpenseFile.cpp" />
 		<Unit filename="ExpenseFile.h" />
@@ -52,8 +51,6 @@
 		<Unit filename="UserManage.h" />
 		<Unit filename="auxiliaryMethods.cpp" />
 		<Unit filename="auxiliaryMethods.h" />
-		<Unit filename="date.cpp" />
-		<Unit filename="date.h" />
 		<Unit filename="homeBudget.cpp" />
 		<Unit filename="homeBudget.h" />
 		<Unit filename="main.cpp" />

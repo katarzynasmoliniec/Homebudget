@@ -25,6 +25,7 @@ vector <Income> IncomeFile :: loadIncomesOfLoggedInUserFromFile(int idLoggedUser
             income.setCategory(xml.GetData());
             incomes.push_back(income);
         }
+        xml.OutOfElem();
     }
     xml.ResetPos();
     return incomes;

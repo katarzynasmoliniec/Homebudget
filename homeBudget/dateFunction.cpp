@@ -9,9 +9,6 @@ int DateFunction :: getTodayDate()
     tm tTM = * localtime(& t);
     strftime(bufor, sizeof( bufor ), "%Y%m%d", & tTM );
     date = atoi(bufor);
-
-    cout << "Wczytano dzisiejsza date: " << date << endl;
-    Sleep(1500);
     return date;
 }
 
@@ -70,11 +67,6 @@ int DateFunction :: convertDateToIntandCheckDate( string number)
     if (!DateFunction :: checkIntDate(year, month, day, daysOfMonth[month-1]))
     {
         cout << "Podano nieprawidlowa date: " << stringDate << endl;
-        Sleep(1500);
-    }
-    else
-    {
-        cout << "Podano prawidlowa date: " << stringDate <<  endl;
         Sleep(1500);
     }
 

@@ -7,22 +7,22 @@ User UserManager :: getNewUserData()
     user.setId(getNewUserId());
 
     cout << "Podaj imie: ";
-    user.setName(AuxiliaryMethods:: wczytajLinie());
-    user.setName(AuxiliaryMethods:: zamienPierwszaLitereNaDuzaAPozostaleNaMale(user.getName()));
+    user.setName(AuxiliaryMethods:: loadLine());
+    user.setName(AuxiliaryMethods:: changeFirstLetterForUpperCaseAndOthersForLowerCase(user.getName()));
 
     cout << "Podaj nazwisko: ";
-    user.setSurname(AuxiliaryMethods:: wczytajLinie());
-    user.setSurname(AuxiliaryMethods:: zamienPierwszaLitereNaDuzaAPozostaleNaMale(user.getSurname()));
+    user.setSurname(AuxiliaryMethods:: loadLine());
+    user.setSurname(AuxiliaryMethods:: changeFirstLetterForUpperCaseAndOthersForLowerCase(user.getSurname()));
 
     do
     {
         cout << "Podaj login: ";
-        user.setLogin(AuxiliaryMethods:: wczytajLinie());
+        user.setLogin(AuxiliaryMethods:: loadLine());
     }
     while (loginExists(user.getLogin()));
 
     cout << "Podaj haslo: ";
-    user.setPassword(AuxiliaryMethods:: wczytajLinie());
+    user.setPassword(AuxiliaryMethods:: loadLine());
 
     return user;
 }
@@ -65,7 +65,7 @@ char UserManager :: selectOptionFromUserMenu()
     cout << "7. Wyloguj sie" << endl;
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
-    choice = AuxiliaryMethods :: wczytajZnak();
+    choice = AuxiliaryMethods :: loadChar();
 
     return choice;
 }
@@ -86,7 +86,7 @@ int UserManager :: loginUser()
     string login = "", password = "";
 
     cout << "Podaj login: ";
-    login = AuxiliaryMethods:: wczytajLinie();
+    login = AuxiliaryMethods:: loadLine();
     for (size_t i = 0; i < users.size(); i++)
     {
         if (users[i].getLogin() == login)
@@ -94,7 +94,7 @@ int UserManager :: loginUser()
             for (int attempt = 3; attempt > 0; attempt--)
             {
                 cout << "Podaj haslo. Pozostalo prob: " << attempt << ": ";
-                password = AuxiliaryMethods:: wczytajLinie();
+                password = AuxiliaryMethods:: loadLine();
                 if (users[i].getPassword() == password)
                 {
                     cout << endl << "Zalogowales sie." << endl << endl;
@@ -117,7 +117,7 @@ void UserManager :: changePasswordUser()
 {
     string newPassword = "";
     cout << "Podaj nowe haslo: ";
-    newPassword = AuxiliaryMethods :: wczytajLinie();
+    newPassword = AuxiliaryMethods :: loadLine();
 
     for (size_t i = 0; i < users.size(); i++)
     {
@@ -129,7 +129,6 @@ void UserManager :: changePasswordUser()
             system("pause");
         }
     }
-
 }
 
 void UserManager :: logoutUser()

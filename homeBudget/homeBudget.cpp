@@ -40,7 +40,7 @@ char HomeBudget :: selectOptionFromMainMenu()
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
 
-    choice = AuxiliaryMethods :: wczytajZnak();
+    choice = AuxiliaryMethods :: loadChar();
 
     return choice;
 }
@@ -70,19 +70,19 @@ void HomeBudget :: addExpense()
     }
     else
     {
-        cout << "Aby dodac przychod, nalezy najpierw sie zalogowac." << endl;
+        cout << "Aby dodac wydatek, nalezy najpierw sie zalogowac." << endl;
         system("pause");
     }
 }
-void HomeBudget :: balanse()
+void HomeBudget :: balance()
 {
     if(userManager.isUserLoggedIn())
     {
-         incomeExpense->balanse();
+         incomeExpense->balance();
     }
     else
     {
-        cout << "Aby dodac przychod, nalezy najpierw sie zalogowac." << endl;
+        cout << "Aby zobaczyc bilans, nalezy najpierw sie zalogowac." << endl;
         system("pause");
     }
 }

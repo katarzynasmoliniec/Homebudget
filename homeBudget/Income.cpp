@@ -33,4 +33,3 @@ string Income :: getCategory()
 {
     return category;
 }
-

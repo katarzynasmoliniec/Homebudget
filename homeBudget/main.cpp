@@ -42,8 +42,14 @@ int main()
             case '2':
                 homeBudget.addExpense();
                 break;
-            case '3' || '4' || '5':
-                homeBudget.balanse();
+            case '3':
+                homeBudget.balance();
+                break;
+            case '4':
+                homeBudget.balance();
+                break;
+            case '5':
+                homeBudget.balance();
                 break;
             case '6':
                 homeBudget.changePasswordUser();

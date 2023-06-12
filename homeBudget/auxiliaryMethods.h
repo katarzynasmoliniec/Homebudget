@@ -10,16 +10,11 @@ using namespace std;
 class AuxiliaryMethods
 {
 public:
-    static string konwerjsaIntNaString(int liczba);
-    static int konwersjaStringNaInt(string liczba);
-    static string wczytajLinie();
-    static string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
-    static string pobierzLiczbe(string tekst, int pozycjaZnaku);
-    static char wczytajZnak();
-
+    static string changeFirstLetterForUpperCaseAndOthersForLowerCase(string str);
+    static string loadLine();
+    static char loadChar();
     static double loadNumber();
     static string doubleToString(double number);
     static double stringToDouble(string number);
-
 };
 #endif
