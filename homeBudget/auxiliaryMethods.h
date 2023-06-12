@@ -16,6 +16,10 @@ public:
     static string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
     static string pobierzLiczbe(string tekst, int pozycjaZnaku);
     static char wczytajZnak();
-    static int wczytajLiczbeCalkowita();
+
+    static double loadNumber();
+    static string doubleToString(double number);
+    static double stringToDouble(string number);
+
 };
 #endif

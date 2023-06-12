@@ -4,21 +4,20 @@
 #include <iostream>
 #include <vector>
 
-#include "IncomeFile.h"
+#include "Expense.h"
 #include "auxiliaryMethods.h"
 #include "Markup.h"
 
 using namespace std;
 
-class ExpenseFile :public IncomeFile
+class ExpenseFile
 {
-    int idOstatniegoAdresata;
+    const string FILE_NAME;
 
 public:
-    ExpenseFile(string nameFileExpense) : IncomeFile(nameFileExpense)
-    {
-        idOstatniegoAdresata =0;
-    };
+    ExpenseFile(string nameFileExpense) : FILE_NAME(nameFileExpense){};
 
+    vector <Expense> loadExpensesOfLoggedInUserFromFile(int idLoggedUser);
+    void addExpenseToFile(Expense expense);
 };
 #endif

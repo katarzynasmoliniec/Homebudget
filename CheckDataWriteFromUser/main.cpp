@@ -11,6 +11,11 @@
 
 using namespace std;
 
+struct Date
+{
+    int year = 0, month = 0, day = 0;
+};
+
 bool checkYear(int y)
 {
     return (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;
@@ -47,6 +52,39 @@ string convertDatesToStringStructur(int d, int m, int y)
     return date;
 }
 
+Date convertDateToIntStructur( string number)
+{
+
+    Date date;
+    string stringName = "";
+    int numberOfPositionInStructur = 1;
+
+    for (size_t posiotionChar = 0; posiotionChar < number.length(); posiotionChar++)
+    {
+        if (number[posiotionChar] != '-')
+        {
+            stringName += number[posiotionChar];
+        }
+        else
+        {
+            switch(numberOfPositionInStructur)
+            {
+            case 1:
+                date.year = atoi(stringName.c_str());
+                break;
+            case 2:
+                date.month = atoi(stringName.c_str());
+                break;
+            }
+            numberOfPositionInStructur++;
+            stringName = "";
+        }
+    }
+    date.day = atoi(stringName.c_str());
+
+    return date;
+}
+
 int main()
 {
     tm t = {};
@@ -54,7 +92,6 @@ int main()
     int daysOfMonth[12]= {31,28,31,30,31,30,31,31,30,31,30,31};
 
     cout << "Podaj date od (rrrr-mm-dd):" << endl;
-
     cin >> get_time(&t, "%Y-%m-%d");
 
     dayFrom = t.tm_mday;
@@ -67,17 +104,17 @@ int main()
         cout << "Correct date!" << endl;
 
     cout << "Podaj date do (rrrr-mm-dd):" << endl;
+    cin >> get_time(&t, "%Y%m%d");
 
-    cin >> get_time(&t, "%Y-%m-%d");
-
+    cout << t;
     dayTo = t.tm_mday;
     monthTo = t.tm_mon + 1;
     yearTo = t.tm_year + 1900;
 
-    if (!checkDate(dayTo, monthTo, yearTo, &daysOfMonth[monthTo-1]))
+   if (!checkDate(dayTo, monthTo, yearTo, &daysOfMonth[monthTo-1]))
         cout << "Wrong date!" << endl;
     else
-        cout << "Correct date!" << endl;
+        cout << "Correct date!" << endl;*/
 
     return 0;
 }

@@ -65,19 +65,38 @@ char AuxiliaryMethods :: wczytajZnak()
     return znak;
 }
 
-int AuxiliaryMethods :: wczytajLiczbeCalkowita()
+double AuxiliaryMethods :: loadNumber()
 {
-    string wejscie = "";
-    int liczba = 0;
+    string input = "";
+    double number = 0;
 
     while(true)
     {
-        getline(cin, wejscie);
+        getline(cin, input);
+        if (input.find(','))
+        {
+            replace( input.begin(), input.end(), ',', '.' );
+        }
+        stringstream myStream(input);
 
-        stringstream myStream(wejscie);
-        if (myStream >> liczba)
+        if (myStream >> number)
             break;
         cout << "To nie jest liczba. Wpisz ponownie. " << endl;
     }
-    return liczba;
+    return number;
+}
+string AuxiliaryMethods :: doubleToString(double number)
+{
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+double AuxiliaryMethods :: stringToDouble(string number)
+{
+    double doubleNum;
+    istringstream iss(number);
+    iss >> doubleNum;
+
+    return doubleNum;
 }
