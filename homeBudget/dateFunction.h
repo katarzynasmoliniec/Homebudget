@@ -6,6 +6,10 @@
 #include <winbase.h>
 #include <time.h>
 
+#include <string>
+
+#include "auxiliaryMethods.h"
+
 using namespace std;
 
 class DateFunction
@@ -15,7 +19,8 @@ class DateFunction
 
 public:
     static int getTodayDate();
-    static int convertDateToIntandCheckDate(string date);
+    static int convertDateStringToInt(string date);
+    static string convertDateIntToString (int number);
 };
 #endif
 

@@ -68,3 +68,17 @@ double AuxiliaryMethods :: stringToDouble(string number)
     iss >> doubleNum;
     return doubleNum;
 }
+string AuxiliaryMethods :: intToString(int number)
+{
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+int AuxiliaryMethods :: stringToInt(string number)
+{
+    int intNum;
+    istringstream iss(number);
+    iss >> intNum;
+    return intNum;
+}

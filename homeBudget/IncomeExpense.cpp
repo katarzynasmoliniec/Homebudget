@@ -32,6 +32,7 @@ void IncomeExpense :: addIncome()
 {
     Income income;
     char choice;
+    string dateAdded = "";
 
     choice = selectOptionFromIncomeMenu();
 
@@ -41,11 +42,14 @@ void IncomeExpense :: addIncome()
     }
     else if (choice == '2')
     {
-        cout << "Podaj date przychodu w formacie(rrrr-mm-dd):" << endl;
-        string dateAdded = AuxiliaryMethods :: loadLine();
-        income.setDate(DateFunction :: convertDateToIntandCheckDate(dateAdded));
+        do
+        {
+            cout << "Podaj date przychodu w formacie(rrrr-mm-dd):" << endl;
+            dateAdded = AuxiliaryMethods :: loadLine();
+            income.setDate(DateFunction :: convertDateStringToInt(dateAdded));
+        }
+        while ( income.getDate() == 0);
     }
-
     cout << "Podaj kategorie przychodu:" << endl;
     income.setCategory(AuxiliaryMethods :: loadLine());
     income.setCategory(AuxiliaryMethods:: changeFirstLetterForUpperCaseAndOthersForLowerCase(income.getCategory()));
@@ -64,6 +68,7 @@ void IncomeExpense :: addExpense()
 {
     Expense expense;
     char choice;
+    string dateAdded = "";
 
     choice = selectOptionFromExpenseMenu();
 
@@ -73,11 +78,14 @@ void IncomeExpense :: addExpense()
     }
     else if (choice == '2')
     {
-        cout << "Podaj date wydatku w formacie(rrrr-mm-dd):" << endl;
-        string dateAdded = AuxiliaryMethods :: loadLine();
-        expense.setDate(DateFunction :: convertDateToIntandCheckDate(dateAdded));
+        do
+        {
+            cout << "Podaj date wydatku w formacie(rrrr-mm-dd):" << endl;
+            dateAdded = AuxiliaryMethods :: loadLine();
+            expense.setDate(DateFunction :: convertDateStringToInt(dateAdded));
+        }
+        while ( expense.getDate() == 0);
     }
-
     cout << "Podaj kategorie wydatku:" << endl;
     expense.setCategory(AuxiliaryMethods :: loadLine());
     expense.setCategory(AuxiliaryMethods:: changeFirstLetterForUpperCaseAndOthersForLowerCase(expense.getCategory()));
@@ -94,6 +102,8 @@ void IncomeExpense :: addExpense()
 
 void IncomeExpense :: balance()
 {
+    double incomesTolal = 0, expensesTotal = 0;
+
     system("cls");
     cout << "   >>> ZESTAWIENIE PRZYCHODOW I WYDATKOW <<<"  << endl;
     cout << "-----------------------------------------------" << endl;
@@ -105,6 +115,7 @@ void IncomeExpense :: balance()
        for (size_t i = 0; i < incomes.size(); i++)
         {
             dispalyIncomes(incomes[i]);
+            incomesTolal += incomes[i].getAmount();
         }
         cout << endl;
     }
@@ -115,21 +126,27 @@ void IncomeExpense :: balance()
         for (size_t i = 0; i < expenses.size(); i++)
         {
             dispalyExpenses(expenses[i]);
+            expensesTotal += expenses[i].getAmount();
         }
         cout << endl;
     }
+    cout << "      >>> PRZYCHODY I WYDATKI <<<"  << endl << endl;
+    cout << " PRZYCHODY: " << incomesTolal << " zl" << endl;
+    cout << " WYDATKI:   " << expensesTotal << " zl" << endl;
+    cout << " BILANS:    " << incomesTolal - expensesTotal << " zl" << endl << endl;
+
     system("pause");
 }
 
 void IncomeExpense :: dispalyIncomes(Income income)
 {
-    cout << endl << "Data:          " << income.getDate() << endl;
+    cout << endl << "Data:          " << DateFunction :: convertDateIntToString(income.getDate()) << endl;
     cout << "Kategoria:     " << income.getCategory() << endl;
     cout << "Przychod:      " << fixed << setprecision(2) << income.getAmount() << " zl" << endl;
 }
 void IncomeExpense :: dispalyExpenses(Expense expense)
 {
-    cout << endl << "Data:          " << expense.getDate() << endl;
+    cout << endl << "Data:          " << DateFunction :: convertDateIntToString(expense.getDate()) << endl;
     cout << "Kategoria:     " << expense.getCategory() << endl;
     cout << "Wydatek:       " << fixed << setprecision(2) << expense.getAmount() << " zl" << endl;
 }

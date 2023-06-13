@@ -31,46 +31,36 @@ int DateFunction :: checkIntDate( int year, int month, int day, int daysOfMonth)
             return ((day > 0 && day <= daysOfMonth) && (month >= 1 && month <= 12) && (year >= 2000 && year < st.wYear)) || (year == st.wYear && month <= st.wMonth && day <= daysOfMonth);
 }
 
-int DateFunction :: convertDateToIntandCheckDate( string number)
+int DateFunction :: convertDateStringToInt(string number)
 {
     int year = 0, month = 0, day = 0, newDate = 0;
     int daysOfMonth[12]= {31,28,31,30,31,30,31,31,30,31,30,31};
-    string stringName = "";
     string stringDate = "";
-    int numberOfPositionInStructur = 1;
 
-    for (size_t i = 0; i < number.length(); i++)
-    {
-        if (number[i] != '-')
-        {
-            stringName += number[i];
-            stringDate += number[i];
-        }
-        else
-        {
-            switch(numberOfPositionInStructur)
-            {
-            case 1:
-                year = atoi(stringName.c_str());
-                break;
-            case 2:
-                month = atoi(stringName.c_str());
-                break;
-            }
-            numberOfPositionInStructur++;
-            stringName = "";
-        }
-    }
-    if (stringName != "")
-        day = atoi(stringName.c_str());
+    size_t found = number.find_first_of("-");
+    stringDate = number.substr(0, found) + number.substr(found+1);
+    year = AuxiliaryMethods ::stringToInt(number.substr(0, found));
+    month = AuxiliaryMethods ::stringToInt(number.substr(found+1));
+
+    found = stringDate.find_last_of("-");
+    stringDate = stringDate.substr(0, found) + stringDate.substr(found+1);
+    day =  AuxiliaryMethods ::stringToInt(number.substr(found+2));
+    newDate = AuxiliaryMethods ::stringToInt(stringDate);
 
     if (!DateFunction :: checkIntDate(year, month, day, daysOfMonth[month-1]))
     {
-        cout << "Podano nieprawidlowa date: " << stringDate << endl;
+        cout << "Podano nieprawidlowa date: " << number << endl;
         Sleep(1500);
+        newDate = 0;
     }
-
-    newDate =  atoi(stringDate.c_str());
     return newDate;
 }
 
+string DateFunction :: convertDateIntToString (int number)
+{
+    string newDate ="";
+    newDate = AuxiliaryMethods :: intToString(number);
+    newDate.insert(4,"-");
+    newDate.insert(7,"-");
+    return newDate;
+}
