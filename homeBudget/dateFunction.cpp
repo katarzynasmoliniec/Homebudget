@@ -64,3 +64,19 @@ string DateFunction :: convertDateIntToString (int number)
     newDate.insert(7,"-");
     return newDate;
 }
+int DateFunction :: loadThisMonth()
+{
+    int monthToDay = 0;
+    monthToDay = DateFunction :: getTodayDate();
+    monthToDay =  (monthToDay/ 100) * 100;
+    return monthToDay;
+}
+int DateFunction :: loadLastMonth()
+{
+    int lastMonth = 0;
+    lastMonth = DateFunction :: getTodayDate();
+    lastMonth =  ((lastMonth/ 100) * 100) - 100;
+    return lastMonth;
+}
+
+

@@ -21,6 +21,8 @@ public:
     static int getTodayDate();
     static int convertDateStringToInt(string date);
     static string convertDateIntToString (int number);
+    static int loadThisMonth();
+    static int loadLastMonth();
 };
 #endif
 

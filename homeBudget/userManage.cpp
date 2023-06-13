@@ -150,12 +150,3 @@ int UserManager :: getLoggedInUserId()
 {
     return loggedInUserId;
 }
-
-
-
-
-
-
-
-
-

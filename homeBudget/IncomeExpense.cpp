@@ -150,3 +150,61 @@ void IncomeExpense :: dispalyExpenses(Expense expense)
     cout << "Kategoria:     " << expense.getCategory() << endl;
     cout << "Wydatek:       " << fixed << setprecision(2) << expense.getAmount() << " zl" << endl;
 }
+
+void IncomeExpense :: balanceThisMonth()
+{
+    double incomesTolal = 0, expensesTotal = 0;
+    int thisMonth = 0;
+    bool areAmount = false;
+
+    thisMonth = DateFunction :: loadThisMonth();
+    system("cls");
+    cout << "   >>> ZESTAWIENIE PRZYCHODOW I WYDATKOW Z BIEACEGO MIESIACA <<<"  << endl;
+    cout << "-----------------------------------------------" << endl;
+
+    if (!incomes.empty())
+    {
+       cout << "      >>> PRZYCHODY Z BIEACEGO MIESIACA<<<" << endl << endl;;
+       sort(incomes.begin(), incomes.end(), [](Income &income1, Income &income2){return income1.getDate() < income2.getDate();});
+
+       for (size_t i = 0; i < incomes.size(); i++)
+        {
+            if (incomes[i].getDate() >= thisMonth)
+            {
+                dispalyIncomes(incomes[i]);
+                incomesTolal += incomes[i].getAmount();
+                areAmount = true;
+            }
+            else if (areAmount)
+                cout << "BRAK PRZYCHODOW Z BIEZACEGO OKRESU" << endl << endl;
+        }
+        cout << endl;
+    }
+    else {cout << "BRAK PRZYCHODOW Z BIEZACEGO OKRESU" << endl << endl;}
+
+    if (!expenses.empty())
+    {
+        cout << "      >>> WYDATKI Z BIEACEGO MIESIACA <<<" << endl << endl;
+        sort(expenses.begin(), expenses.end(), [](Expense &expense1, Expense &expense2){return expense1.getDate() < expense2.getDate();});
+        for (size_t i = 0; i < expenses.size(); i++)
+        {
+            if (expenses[i].getDate() >= thisMonth)
+            {
+                dispalyExpenses(expenses[i]);
+                expensesTotal += expenses[i].getAmount();
+                areAmount = true;
+            }
+            else if (areAmount)
+                cout << "BRAK WYDATKOW Z BIEZACEGO OKRESU" << endl << endl;
+        }
+        cout << endl;
+    }
+    else {cout << "BRAK WYDATKOW Z BIEZACEGO OKRESU" << endl << endl;}
+
+    cout << "      >>> PRZYCHODY I WYDATKI <<<"  << endl << endl;
+    cout << " PRZYCHODY: " << incomesTolal << " zl" << endl;
+    cout << " WYDATKI:   " << expensesTotal << " zl" << endl;
+    cout << " BILANS:    " << incomesTolal - expensesTotal << " zl" << endl << endl;
+
+    system("pause");
+}

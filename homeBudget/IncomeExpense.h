@@ -29,6 +29,7 @@ class IncomeExpense
     void dispalyIncomes(Income income);
     void dispalyExpenses(Expense expense);
 
+
 public:
     IncomeExpense(string nameFileIncome, string nameFileExpense, int loggedInUserId)
         : LOGGED_IN_USER_ID(loggedInUserId), incomeFile(nameFileIncome), expenseFile(nameFileExpense)
@@ -40,5 +41,6 @@ public:
     void addIncome();
     void addExpense();
     void balance();
+    void balanceThisMonth();
 };
 #endif

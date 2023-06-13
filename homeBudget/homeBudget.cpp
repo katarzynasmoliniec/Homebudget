@@ -74,6 +74,18 @@ void HomeBudget :: addExpense()
         system("pause");
     }
 }
+void HomeBudget :: balanceThisMonth()
+{
+    if(userManager.isUserLoggedIn())
+    {
+         incomeExpense->balanceThisMonth();
+    }
+    else
+    {
+        cout << "Aby zobaczyc bilans, nalezy najpierw sie zalogowac." << endl;
+        system("pause");
+    }
+}
 void HomeBudget :: balance()
 {
     if(userManager.isUserLoggedIn())
