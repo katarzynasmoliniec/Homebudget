@@ -28,7 +28,9 @@ class IncomeExpense
     char selectOptionFromExpenseMenu();
     void dispalyIncomes(Income income);
     void dispalyExpenses(Expense expense);
-
+    double selectIncomesByDate(int monthFrom, int monthTo);
+    double selectExpensesByDate(int monthFrom, int monthTo);
+    void displayBalance(double &incomesTolal, double &expensesTotal);
 
 public:
     IncomeExpense(string nameFileIncome, string nameFileExpense, int loggedInUserId)
@@ -40,7 +42,6 @@ public:
 
     void addIncome();
     void addExpense();
-    void balance();
-    void balanceThisMonth();
+    void balance(char choice);
 };
 #endif

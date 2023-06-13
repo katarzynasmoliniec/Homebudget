@@ -32,24 +32,29 @@ void IncomeExpense :: addIncome()
 {
     Income income;
     char choice;
-    string dateAdded = "";
 
-    choice = selectOptionFromIncomeMenu();
-
-    if (choice == '1')
+    while(1)
     {
-        income.setDate(DateFunction :: getTodayDate());
-    }
-    else if (choice == '2')
-    {
-        do
+        choice = selectOptionFromIncomeMenu();
+        if (choice == '1')
         {
-            cout << "Podaj date przychodu w formacie(rrrr-mm-dd):" << endl;
-            dateAdded = AuxiliaryMethods :: loadLine();
-            income.setDate(DateFunction :: convertDateStringToInt(dateAdded));
+            income.setDate(DateFunction :: getTodayDate());
+            break;
         }
-        while ( income.getDate() == 0);
+        else if (choice == '2')
+        {
+            do
+            {
+                cout << "Podaj date przychodu w formacie(rrrr-mm-dd):" << endl;
+                income.setDate(DateFunction :: convertDateStringToInt(AuxiliaryMethods :: loadLine()));
+            }
+            while (income.getDate() == 0);
+            break;
+        }
+        cout << endl << "Wybrano nieprawidlowy numer!" << endl << endl;
+        system("pause");
     }
+
     cout << "Podaj kategorie przychodu:" << endl;
     income.setCategory(AuxiliaryMethods :: loadLine());
     income.setCategory(AuxiliaryMethods:: changeFirstLetterForUpperCaseAndOthersForLowerCase(income.getCategory()));
@@ -68,23 +73,27 @@ void IncomeExpense :: addExpense()
 {
     Expense expense;
     char choice;
-    string dateAdded = "";
 
-    choice = selectOptionFromExpenseMenu();
-
-    if (choice == '1')
+    while(1)
     {
-        expense.setDate(DateFunction :: getTodayDate());
-    }
-    else if (choice == '2')
-    {
-        do
+        choice = selectOptionFromExpenseMenu();
+        if (choice == '1')
         {
-            cout << "Podaj date wydatku w formacie(rrrr-mm-dd):" << endl;
-            dateAdded = AuxiliaryMethods :: loadLine();
-            expense.setDate(DateFunction :: convertDateStringToInt(dateAdded));
+            expense.setDate(DateFunction :: getTodayDate());
+            break;
         }
-        while ( expense.getDate() == 0);
+        else if (choice == '2')
+        {
+            do
+            {
+                cout << "Podaj date wydatku w formacie(rrrr-mm-dd):" << endl;
+                expense.setDate(DateFunction :: convertDateStringToInt(AuxiliaryMethods :: loadLine()));
+            }
+            while ( expense.getDate() == 0);
+            break;
+        }
+        cout << endl << "Wybrano nieprawidlowy numer!" << endl << endl;
+        system("pause");
     }
     cout << "Podaj kategorie wydatku:" << endl;
     expense.setCategory(AuxiliaryMethods :: loadLine());
@@ -100,50 +109,13 @@ void IncomeExpense :: addExpense()
     system("pause");
 }
 
-void IncomeExpense :: balance()
-{
-    double incomesTolal = 0, expensesTotal = 0;
-
-    system("cls");
-    cout << "   >>> ZESTAWIENIE PRZYCHODOW I WYDATKOW <<<"  << endl;
-    cout << "-----------------------------------------------" << endl;
-
-    if (!incomes.empty())
-    {
-       cout << "      >>> PRZYCHODY <<<"  << endl;
-       sort(incomes.begin(), incomes.end(), [](Income &income1, Income &income2){return income1.getDate() < income2.getDate();});
-       for (size_t i = 0; i < incomes.size(); i++)
-        {
-            dispalyIncomes(incomes[i]);
-            incomesTolal += incomes[i].getAmount();
-        }
-        cout << endl;
-    }
-    if (!expenses.empty())
-    {
-        cout << "      >>> WYDATKI <<<"  << endl;
-        sort(expenses.begin(), expenses.end(), [](Expense &expense1, Expense &expense2){return expense1.getDate() < expense2.getDate();});
-        for (size_t i = 0; i < expenses.size(); i++)
-        {
-            dispalyExpenses(expenses[i]);
-            expensesTotal += expenses[i].getAmount();
-        }
-        cout << endl;
-    }
-    cout << "      >>> PRZYCHODY I WYDATKI <<<"  << endl << endl;
-    cout << " PRZYCHODY: " << incomesTolal << " zl" << endl;
-    cout << " WYDATKI:   " << expensesTotal << " zl" << endl;
-    cout << " BILANS:    " << incomesTolal - expensesTotal << " zl" << endl << endl;
-
-    system("pause");
-}
-
 void IncomeExpense :: dispalyIncomes(Income income)
 {
     cout << endl << "Data:          " << DateFunction :: convertDateIntToString(income.getDate()) << endl;
     cout << "Kategoria:     " << income.getCategory() << endl;
     cout << "Przychod:      " << fixed << setprecision(2) << income.getAmount() << " zl" << endl;
 }
+
 void IncomeExpense :: dispalyExpenses(Expense expense)
 {
     cout << endl << "Data:          " << DateFunction :: convertDateIntToString(expense.getDate()) << endl;
@@ -151,60 +123,96 @@ void IncomeExpense :: dispalyExpenses(Expense expense)
     cout << "Wydatek:       " << fixed << setprecision(2) << expense.getAmount() << " zl" << endl;
 }
 
-void IncomeExpense :: balanceThisMonth()
+void IncomeExpense :: balance(char choice)
 {
     double incomesTolal = 0, expensesTotal = 0;
-    int thisMonth = 0;
-    bool areAmount = false;
+    int dateFrom = 0, dateTo = 0;
 
-    thisMonth = DateFunction :: loadThisMonth();
+    if (choice == '3')
+    {
+        dateFrom = DateFunction :: loadThisMonth();
+        dateTo = dateFrom + 100;
+    }
+    else if (choice == '4')
+    {
+        dateFrom = DateFunction :: loadLastMonth();
+        dateTo = dateFrom + 100;
+    }
+    else if (choice == '5')
+    {
+        do
+        {
+            cout << "Podaj date od (w formacie rrrr-mm-dd):" << endl;
+            dateFrom = DateFunction :: convertDateStringToInt(AuxiliaryMethods :: loadLine());
+            cout << "Podaj date do (w formacie rrrr-mm-dd):" << endl;
+            dateTo = DateFunction :: convertDateStringToInt(AuxiliaryMethods :: loadLine());
+        }
+        while ((dateFrom == 0) || (dateTo == 0));
+    }
+
     system("cls");
-    cout << "   >>> ZESTAWIENIE PRZYCHODOW I WYDATKOW Z BIEACEGO MIESIACA <<<"  << endl;
+    cout << "   >>> ZESTAWIENIE PRZYCHODOW I WYDATKOW  <<<"  << endl;
     cout << "-----------------------------------------------" << endl;
+
+    incomesTolal = selectIncomesByDate(dateFrom, dateTo);
+    expensesTotal = selectExpensesByDate(dateFrom, dateTo);
+    displayBalance(incomesTolal, expensesTotal);
+    system("pause");
+}
+
+double IncomeExpense :: selectIncomesByDate(int dateFrom, int dateTo)
+{
+    double incomesTolal = 0;
 
     if (!incomes.empty())
     {
-       cout << "      >>> PRZYCHODY Z BIEACEGO MIESIACA<<<" << endl << endl;;
+       cout << "      >>> PRZYCHODY<<<" << endl << endl;;
        sort(incomes.begin(), incomes.end(), [](Income &income1, Income &income2){return income1.getDate() < income2.getDate();});
 
        for (size_t i = 0; i < incomes.size(); i++)
         {
-            if (incomes[i].getDate() >= thisMonth)
+            if ((incomes[i].getDate() >= dateFrom) && (incomes[i].getDate() < dateTo))
             {
                 dispalyIncomes(incomes[i]);
                 incomesTolal += incomes[i].getAmount();
-                areAmount = true;
             }
-            else if (areAmount)
-                cout << "BRAK PRZYCHODOW Z BIEZACEGO OKRESU" << endl << endl;
         }
         cout << endl;
     }
-    else {cout << "BRAK PRZYCHODOW Z BIEZACEGO OKRESU" << endl << endl;}
+    else {cout << "BRAK PRZYCHODOW Z WYBRANEGO OKRESU" << endl << endl;}
+
+    return incomesTolal;
+}
+
+double IncomeExpense :: selectExpensesByDate(int dateFrom, int dateTo)
+{
+    double expensesTotal = 0;
 
     if (!expenses.empty())
     {
-        cout << "      >>> WYDATKI Z BIEACEGO MIESIACA <<<" << endl << endl;
+        cout << "      >>> WYDATKI <<<" << endl << endl;
         sort(expenses.begin(), expenses.end(), [](Expense &expense1, Expense &expense2){return expense1.getDate() < expense2.getDate();});
         for (size_t i = 0; i < expenses.size(); i++)
         {
-            if (expenses[i].getDate() >= thisMonth)
+            if ((expenses[i].getDate() >= dateFrom) && ((expenses[i].getDate() < dateTo)))
             {
                 dispalyExpenses(expenses[i]);
                 expensesTotal += expenses[i].getAmount();
-                areAmount = true;
             }
-            else if (areAmount)
-                cout << "BRAK WYDATKOW Z BIEZACEGO OKRESU" << endl << endl;
         }
         cout << endl;
     }
-    else {cout << "BRAK WYDATKOW Z BIEZACEGO OKRESU" << endl << endl;}
+    else {cout << "BRAK WYDATKOW Z WYBRANEGO OKRESU" << endl << endl;}
 
-    cout << "      >>> PRZYCHODY I WYDATKI <<<"  << endl << endl;
+    return expensesTotal;
+}
+
+void IncomeExpense :: displayBalance(double &incomesTolal, double &expensesTotal)
+{
+    cout << "      >>> BILANS PRZYCHODOW I WYDATKOW <<<"  << endl << endl;
     cout << " PRZYCHODY: " << incomesTolal << " zl" << endl;
     cout << " WYDATKI:   " << expensesTotal << " zl" << endl;
+    cout.setf(ios_base::showpos);
     cout << " BILANS:    " << incomesTolal - expensesTotal << " zl" << endl << endl;
-
-    system("pause");
+	cout.unsetf(ios_base::showpos);
 }

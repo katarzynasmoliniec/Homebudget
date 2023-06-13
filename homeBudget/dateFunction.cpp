@@ -78,5 +78,3 @@ int DateFunction :: loadLastMonth()
     lastMonth =  ((lastMonth/ 100) * 100) - 100;
     return lastMonth;
 }
-
-

@@ -43,13 +43,13 @@ int main()
                 homeBudget.addExpense();
                 break;
             case '3':
-                homeBudget.balanceThisMonth();
+                homeBudget.balance(choice);
                 break;
             case '4':
-                homeBudget.balance();
+                homeBudget.balance(choice);
                 break;
             case '5':
-                homeBudget.balance();
+                homeBudget.balance(choice);
                 break;
             case '6':
                 homeBudget.changePasswordUser();

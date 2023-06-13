@@ -19,7 +19,7 @@ string AuxiliaryMethods :: loadLine()
 char AuxiliaryMethods :: loadChar()
 {
     string input = "";
-    char charInfo  = {0};
+    char charInfo = {0};
 
     while(true)
     {
