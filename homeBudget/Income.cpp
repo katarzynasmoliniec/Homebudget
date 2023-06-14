@@ -2,7 +2,7 @@
 
 void Income :: setIdUser(int newIdUser)
 {
-      idUser = newIdUser;
+    idUser = newIdUser;
 }
 void Income :: setDate(int newDate)
 {

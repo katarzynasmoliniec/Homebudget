@@ -12,12 +12,12 @@ int DateFunction :: getTodayDate()
     return date;
 }
 
-bool DateFunction :: checkYear(int y)
+bool DateFunction :: checkYear(int &y)
 {
     return (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
 }
 
-int DateFunction :: checkIntDate( int year, int month, int day, int daysOfMonth)
+int DateFunction :: checkIntDate( int &year, int &month, int &day, int &daysOfMonth)
 {
     SYSTEMTIME st;
     GetSystemTime(&st);

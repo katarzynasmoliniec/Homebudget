@@ -15,7 +15,6 @@ void HomeBudget :: loginUser()
     {
         incomeExpense = new IncomeExpense(NAME_FILE_INCOME, NAME_FILE_EXPENSE, userManager.getLoggedInUserId());
     }
-
 }
 void HomeBudget :: changePasswordUser()
 {
@@ -41,7 +40,6 @@ char HomeBudget :: selectOptionFromMainMenu()
     cout << "Twoj wybor: ";
 
     choice = AuxiliaryMethods :: loadChar();
-
     return choice;
 }
 char HomeBudget :: selectOptionFromUserMenu()
@@ -61,7 +59,6 @@ void HomeBudget :: addIncome()
         system("pause");
     }
 }
-
 void HomeBudget :: addExpense()
 {
     if(userManager.isUserLoggedIn())
@@ -74,7 +71,6 @@ void HomeBudget :: addExpense()
         system("pause");
     }
 }
-
 void HomeBudget :: balance(char choice)
 {
     if(userManager.isUserLoggedIn())

@@ -14,6 +14,14 @@ string AuxiliaryMethods :: loadLine()
     string input = "";
     cin.sync();
     getline(cin, input);
+
+    while (input.empty())
+    {
+        cout << "Nie wpisano danych. Wpisz ponownie:" << endl;
+        cin.sync();
+        getline(cin, input);
+
+    }
     return input;
 }
 char AuxiliaryMethods :: loadChar()
@@ -23,14 +31,14 @@ char AuxiliaryMethods :: loadChar()
 
     while(true)
     {
-        string input = loadLine();
-
+        string input = "";
+        getline(cin, input);
         if (input.length() == 1)
         {
             charInfo = input[0];
             break;
         }
-        cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
+        cout << "To nie jest pojedynczy znak. Wpisz ponownie:" << endl;
     }
     return charInfo;
 }

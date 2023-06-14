@@ -160,7 +160,7 @@ void IncomeExpense :: balance(char choice)
     system("pause");
 }
 
-double IncomeExpense :: selectIncomesByDate(int dateFrom, int dateTo)
+double IncomeExpense :: selectIncomesByDate(int &dateFrom, int &dateTo)
 {
     double incomesTolal = 0;
 
@@ -179,12 +179,12 @@ double IncomeExpense :: selectIncomesByDate(int dateFrom, int dateTo)
         }
         cout << endl;
     }
-    else {cout << "BRAK PRZYCHODOW Z WYBRANEGO OKRESU" << endl << endl;}
+    if (incomesTolal == 0) {cout << "BRAK PRZYCHODOW Z WYBRANEGO OKRESU" << endl << endl;}
 
     return incomesTolal;
 }
 
-double IncomeExpense :: selectExpensesByDate(int dateFrom, int dateTo)
+double IncomeExpense :: selectExpensesByDate(int &dateFrom, int &dateTo)
 {
     double expensesTotal = 0;
 
@@ -202,7 +202,7 @@ double IncomeExpense :: selectExpensesByDate(int dateFrom, int dateTo)
         }
         cout << endl;
     }
-    else {cout << "BRAK WYDATKOW Z WYBRANEGO OKRESU" << endl << endl;}
+    if (expensesTotal == 0) {cout << "BRAK WYDATKOW Z WYBRANEGO OKRESU" << endl << endl;}
 
     return expensesTotal;
 }

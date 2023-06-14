@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
-#include<algorithm>
+#include <algorithm>
 #include <iomanip>
 
 #include "Income.h"
@@ -28,8 +28,8 @@ class IncomeExpense
     char selectOptionFromExpenseMenu();
     void dispalyIncomes(Income income);
     void dispalyExpenses(Expense expense);
-    double selectIncomesByDate(int monthFrom, int monthTo);
-    double selectExpensesByDate(int monthFrom, int monthTo);
+    double selectIncomesByDate(int &monthFrom, int &monthTo);
+    double selectExpensesByDate(int &monthFrom, int &monthTo);
     void displayBalance(double &incomesTolal, double &expensesTotal);
 
 public:
